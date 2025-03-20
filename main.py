@@ -28,11 +28,42 @@ def preprocess_text(text):
 import streamlit as st
 ## streamlit app
 # Streamlit app
+
+# Custom CSS for dark theme (including text area)
+dark_theme_css = """
+    <style>
+        body {
+            background-color: #0e1117;
+            color: white;
+        }
+        .stTextInput>div>div>input, .stTextArea>div>textarea {
+            background-color: #262730 !important;
+            color: white !important;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        .stButton>button {
+            background-color: #1f77b4;
+            color: white;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .stButton>button:hover {
+            background-color: #ffcc00;
+            color: black;
+        }
+        .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+            color: #ffcc00;
+        }
+    </style>
+"""
+st.markdown(dark_theme_css, unsafe_allow_html=True)
+
 st.title('IMDB Movie Review Sentiment Analysis')
 st.write('Enter a movie review to classify it as positive or negative.')
 
-# User input
-user_input = st.text_area('Movie Review')
+# User input with dark theme
+user_input = st.text_area("📝 Enter your movie review below:", height=150)
 
 if st.button('Classify'):
 
